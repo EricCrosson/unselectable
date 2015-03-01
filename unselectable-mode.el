@@ -32,6 +32,16 @@
 
 ;;; Code:
 
+(defun unselectable-mode-on ()
+  "Turn on function `unselectable-mode'"
+  (set-window-parameter (selected-window) 'no-other-window t)
+  (message "Window will now be ignored by `other-window'"))
+
+(defun unselectable-mode-off ()
+  "Turn off function `unselectable-mode'"
+  (set-window-parameter (selected-window) 'no-other-window nil)
+  (message "Window will now be recognized by `other-window'"))
+
 ;;;###autoload
 (define-minor-mode unselectable-mode
   "Toggle `unselectable-mode'.
@@ -42,12 +52,9 @@ chosen by `other-window'."
   :lighter " unselectable"
   :global nil
   :group 'unselectable
-  (if (window-parameter (selected-window) 'no-other-window)
-      (progn
-        (set-window-parameter (selected-window) 'no-other-window nil)
-        (message "Window will now be recognized by `other-window'"))
-    (set-window-parameter (selected-window) 'no-other-window t)
-    (message "Window will now be ignored by `other-window'")))
+  (if unselectable-mode
+      (unselectable-mode-on)
+    (unselectable-mode-on)))
 
 (provide 'unselectable-mode)
 
