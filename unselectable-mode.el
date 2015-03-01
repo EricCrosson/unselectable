@@ -1,5 +1,4 @@
-;;; unselectable-mode.el --- Prevent a window from being selected by
-;;; `other-buffer'
+;;; unselectable-mode.el --- Prevent a window from being selected by `other-buffer'
 ;; Version 0.0.20140228
 
 ;; Copyright (C) 2015     Eric Steven Crosson (esc)
