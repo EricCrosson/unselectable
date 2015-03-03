@@ -1,4 +1,4 @@
-;;; unselectable.el --- Prevent a window from being selected by `other-buffer'
+;;; unselectable-buffer.el --- Prevent a window from being selected by `other-buffer'
 ;; Version 0.0.20140228
 
 ;; Copyright (C) 2015     Eric Steven Crosson (esc)
@@ -24,37 +24,37 @@
 
 ;;; Usage:
 
-;; (global-set-key (kbd "C-c C-t") 'unselectable)
+;; (global-set-key (kbd "C-c C-t") 'unselectable-buffer)
 ;;   - or -
-;; M-x unselectable
+;; M-x unselectable-buffer
 ;;   to toggle a buffer's selectable status inside a window
 
 ;;; Code:
 
-(defun unselectable-on ()
-  "Turn on function `unselectable'"
+(defun unselectable-buffer-on ()
+  "Turn on function `unselectable-buffer'"
   (set-window-parameter (selected-window) 'no-other-window t)
   (message "Window will now be ignored by `other-window'"))
 
-(defun unselectable-off ()
-  "Turn off function `unselectable'"
+(defun unselectable-buffer-off ()
+  "Turn off function `unselectable-buffer'"
   (set-window-parameter (selected-window) 'no-other-window nil)
   (message "Window will now be recognized by `other-window'"))
 
 ;;;###autoload
-(define-minor-mode unselectable
-  "Toggle minor mode `unselectable'.
+(define-minor-mode unselectable-buffer
+  "Toggle minor mode `unselectable-buffer'.
 
-When enabled, `unselectable' prevents a buffer from being
+When enabled, `unselectable-buffer' prevents a buffer from being
 chosen by `other-window'."
   :init-value nil
   :lighter " unselectable"
   :global nil
-  :group 'unselectable
-  (if unselectable
-      (unselectable-on)
-    (unselectable-on)))
+  :group 'unselectable-buffer
+  (if unselectable-buffer
+      (unselectable-buffer-on)
+    (unselectable-buffer-on)))
 
-(provide 'unselectable)
+(provide 'unselectable-buffer)
 
-;;; unselectable.el ends here
+;;; unselectable-buffer.el ends here
